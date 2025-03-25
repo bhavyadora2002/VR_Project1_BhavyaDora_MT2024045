@@ -129,7 +129,10 @@ My dataset contains 4095 images.Out of which, 2165 images consists of faces with
 * Also when we used fixed threshold we were not able to perform very well because most of the time the mask was regioned as a part of face so to avoid that we used adaptive threshold where based on the surrounding region thresholding was done.
 * Some images had low IoU values, suggesting under-segmentation (missing parts of the object) or over-segmentation (extra regions included).
 
-
+### How to run
+* Load the dataset.
+* Change the path in the code according to the loaded dataset.
+* Run the file.
 
 
   
