@@ -39,11 +39,61 @@ My dataset contains 4095 images.Out of which, 2165 images consists of faces with
 * Upload the dataset in your google drive.
 * Path to upload dataset: /content/drive/MyDrive/Colab Notebooks
 * Open VR_Task_a_b.ipynb in your colab and run it.
+# b. Binary Classification Using CNN
+i. Design and train a Convolutional Neural Network (CNN) to perform binary
+classification on the same dataset.
+ii. Try a few hyper-parameter variations (e.g., learning rate, batch size, optimizer,
+activation function in the classification layer) and report the results.
+iii. Compare the CNN's performance with the ML classifiers.
+## **Dataset:** 
+My dataset contains 4095 images.Out of which, 2165 images consists of faces with masks and 1930 images consists of faces without masks.
+* Structure: Dataset->with_mask,without_mask(Dataset folder consists of 2 sub folders i.e, with_mask, without_mask)
+* Source: https://github.com/chandrikadeb7/Face-Mask-Detection/tree/master/dataset
+## **Methodology:**
+1. **Accessing Data:** 
+Loaded images from the dataset, converted them to RGB format, resized them to 64x64, and stored them in a list. Converted the image data and labels into NumPy arrays for model training.
+2. **Data Splitting:**
+* As the data is not balanced(2165 images in with_mask and 1930 images in without_mask), We used Stratified Split to maintain class balance.
+* Splitted the data to 64% tarin data,16% Validation data and 20% test data.
+3. **Model Training:**
+* Used Convolution Neural Network to train the model. Tried with different Hyper-Paramneters to find the best Hyper-parameters for the model.
+## **Hyperparameters and Experiements:**
+1. **Optimizer**:
+* Performed model training using Adam,SGD,RMSProp and AdaGrad and calculated accuracy to compare them.
+* Adam Test Accuracy: 0.8950, SGD Test Accuracy: 0.8962, RMSprop Test Accuracy: 0.8462, Adagrad Test Accuracy: 0.8303.
+* Adam and SGD shows better results compared to other classifiers.SGD is slightly better than Adam while comparing validation accuracy and test accuracy.
+2. **Activation Function in Classification Layer:**
+* Performed model training using sigmoid,softmax,reLu,tanh and calculated accuracy to compare them.
+* sigmoid Test Accuracy: 0.9048, softmax Test Accuracy: 0.4713, tanh Test Accuracy: 0.5287, relu Test Accuracy: 0.4725
+* By observing results, Sigmoid works better than other activations.
+3. **Learning Rate:**
+* Performed model training for different learning rates(0.01,0.005,0.001) and calculated accuracy to compare them.
+* 0.001 Test Accuracy: 0.9011, 0.005 Test Accuracy: 0.9121, 0.01 Test Accuracy: 0.9109
+* The results are almost similar.We chose 0.01 for faster convergence
+4. **Batch Size:**
+* Performed model training for different batch sizes(16,32,64) and calculated accuracy to compare them.
+* batchsize 16 Test Accuracy: 0.9109, batchsize 32 Test Accuracy: 0.9353, batchsize 64 Test Accuracy: 0.7216
+* Training with batch size 32 gives better accuracy.
+## **Model training:**
+* Performed model training for CNN using SGD as optimizer, sigmoid as Activation Function, learning rate 0.01, and batchsize 32.
+## Observations and Analysis:
+* Test Accuracy of RF on Canny: 0.74
+* Test Accuracy of SVC on Canny: 0.76
+* Test Accuracy of RF on Sobel: 0.85
+* Test Accuracy of SVC on Sobel: 0.71
+* Test Accuracy of RF on Contours: 0.75
+* Test Accuracy of SVC on Contours: 0.76
+* Test Accuracy of CNN: 0.9487
+1.  CNN (0.9487 accuracy) is significantly better than RF (0.85) and SVM (0.76)
+2.  CNN is better because
+*   It will automatically learns features, while ML classifiers rely on manually extracted features.
+*   ML classifiers rely on preprocessing, while CNN learns from raw pixel data
+
+
+
+
+
   
-
-
-
-
 
 
 
