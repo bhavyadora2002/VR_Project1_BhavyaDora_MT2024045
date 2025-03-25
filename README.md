@@ -112,9 +112,10 @@ My dataset contains 4095 images.Out of which, 2165 images consists of faces with
 * Mean iou:- 0.3226
 ![image](https://github.com/user-attachments/assets/db5c15aa-ab3d-478a-82bd-ad1165e798d5)
 
-### Observations
+### Observations and Challenges
 * As the dataset is very large and computing and storing the results occupies large amount of memory so we are using moving average and displaying only top 5 results.
 * Also when we used fixed threshold we were not able to perform very well because most of the time the mask was regioned as a part of face so to avoid that we used adaptive threshold where based on the surrounding region thresholding was done.
+* Some images had low IoU values, suggesting under-segmentation (missing parts of the object) or over-segmentation (extra regions included).
 
 
 
