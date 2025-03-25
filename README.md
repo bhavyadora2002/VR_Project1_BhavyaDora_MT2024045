@@ -1,8 +1,8 @@
 # a. Binary Classification Using Handcrafted Features and ML Classifiers (4 Marks)
-## i. Extract handcrafted features from the dataset.
-## ii. Train and evaluate at least two machine learning classifiers (e.g., SVM, Neural
+i. Extract handcrafted features from the dataset.
+ii. Train and evaluate at least two machine learning classifiers (e.g., SVM, Neural
 network) to classify faces as "with mask" or "without mask."
-## iii. Report and compare the accuracy of the classifiers.
+iii. Report and compare the accuracy of the classifiers.
 ## **Dataset:** 
 My dataset contains 4095 images.Out of which, 2165 images consists of faces with masks and 1930 images consists of faces without masks.
 * Structure: Dataset->with_mask,without_mask(Dataset folder consists of 2 sub folders i.e, with_mask, without_mask)
@@ -15,11 +15,32 @@ My dataset contains 4095 images.Out of which, 2165 images consists of faces with
 * Sobel Edge Detection: Computed Sobel gradients in both x and y directions, combined their magnitudes to get edge strength. Flattened the Sobel feature map and stored it for training.
 * Contours Detection: Used Canny edges to find contours and drew them on a blank image. Flattened the contour image and stored it as features for training.
 * Appended labels for the extracted features of each category. Now my data is ready to perform classification.
+  ![image](https://github.com/user-attachments/assets/a56929d6-40ae-4056-a4ba-a4752595911e)
+
 3. **Data Splitting:**
 * As the data is not balanced(2165 images in with_mask and 1930 images in without_mask), We used Stratified Split to maintain class balance.
 4. **Model Training**:
 * Performed classification task on features obtained from Canny,Sobel and Contours using Random Forest and Support Vector Machine Classifiers.
   Calculated Test Accuracy to compare results.
+## *Results:*
+* Test Accuracy of RF on Canny: 0.74
+* Test Accuracy of SVC on Canny: 0.76
+* Test Accuracy of RF on Sobel: 0.85
+* Test Accuracy of SVC on Sobel: 0.71
+* Test Accuracy of RF on Contours: 0.75
+* Test Accuracy of SVC on Contours: 0.76
+* Random Forest on Sobel gives good accuracy compared to others
+## **Observations and Analysis:**
+* We did analysis for RF on Sobel as it is giving high accuracy.
+* To check where my classifier is working good and bad, We displayed 5 images for True Positives, True Negatives, False Positives and False Negatives.
+* We found that classifier failed for images with text, images with other objects,rotated images and images with no clear boundaries etc.
+![image](https://github.com/user-attachments/assets/0724d595-a618-4d2d-99fd-b3900f355609)
+![image](https://github.com/user-attachments/assets/25102b75-1d0a-4442-9877-2b1c8cd5ff25)
+## How to run code:
+* Upload the dataset in your google drive.
+* Path to upload dataset: /content/drive/MyDrive/Colab Notebooks
+* Open VR_Task_a_b.ipynb in your colab and run it.
+  
 
 
 
