@@ -30,4 +30,93 @@ My dataset contains 4095 images.Out of which, 2165 images consists of faces with
 
 
 * **Training**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# c. Region Segmentation Using Traditional Techniques (3 Marks)
+## i. Implement a region-based segmentation method (e.g., thresholding, edge detection) to segment the mask regions for faces identified as "with mask."
+
+### Introduction
+* The aim of this task is to identify the mask using region based segmentation
+
+### Dataset
+* A Masked Face Segmentation Dataset with ground truth face masks can be accessed here: https://github.com/sadjadrz/MFSD
+    * This was the folder structure of the dataset.
+      ![image](https://github.com/user-attachments/assets/6c7383b8-abbc-451b-a34e-1d5064b9b4ad)
+
+        * img
+            * Contains the images of people with mask and without mask.
+        * dataset.csv
+            * There were multiple entries of a image with labelled bounding boxes i.e:- if the mask was present then labelled as True or else False.
+        * face_crop 
+            * Using the dataset.csv file taken out the bounding boxes of only with mask label and stored the face_crop file.
+            * This folder containe 9383 images which are faces with masks extracted from the images in the folder img.
+        * Ground truth:- face_crop_segmentation
+            * This folder contains the binary images of the masks which act as a ground truth so that we compare our results with these images using the Intersection over Union(IOU) metrics.
+
+### Steps
+* Converted the images to gray scale as it works best for single channel.
+* Applied the guassian blur with a 5,5 kernel to remove noise and smoothen the image.
+* Identify the images by applying the Canny edge detection with threshold values of 50 to 150.
+* Adaptive otsu's threshold:- Used this instead of fixed threshold because we don't know 
+    1)  cv2.THRESH_BINARY → Converts pixels to either 0 (black) or 255 (white) based on a threshold.
+    2)  cv2.THRESH_OTSU → Automatically determines the optimal threshold value by minimizing the variance between foreground and background pixel intensities.
+* Morphological operation that removes small holes (black regions) inside white objects in a binary image.
+    1) Dilation → Expands the white regions.
+    2) Erosion → Shrinks the expanded regions back.
+* Finding contours to identify the shape of the image.
+* An empty mask is initialized and the detected contours are overlaid on this by coloring the identified mask with blue colour.
+
+### Results
+* IoU Formula:
+    * Intersection: Common area between predicted and ground truth masks.
+    * Union: Total area covered by both masks.
+* Displaying the best 5 results so check the results
+* Mean iou:- 0.3226
+![image](https://github.com/user-attachments/assets/db5c15aa-ab3d-478a-82bd-ad1165e798d5)
+
+### Observations
+* As the dataset is very large and computing and storing the results occupies large amount of memory so we are using moving average and displaying only top 5 results.
+* Also when we used fixed threshold we were not able to perform very well because most of the time the mask was regioned as a part of face so to avoid that we used adaptive threshold where based on the surrounding region thresholding was done.
+
+
+
+
   
