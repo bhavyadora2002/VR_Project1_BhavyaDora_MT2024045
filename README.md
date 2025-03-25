@@ -152,7 +152,7 @@ i. Implement a region-based segmentation method (e.g., thresholding, edge detect
         * Ground truth:- face_crop_segmentation
             * This folder contains the binary images of the masks which act as a ground truth so that we compare our results with these images using the Intersection over Union(IOU) metrics.
 
-## Steps
+## Region segmentation based on edge and Otsu's threshold
 * Converted the images to gray scale as it works best for single channel.
 * Applied the guassian blur with a 5,5 kernel to remove noise and smoothen the image.
 * Identify the images by applying the Canny edge detection with threshold values of 50 to 150.
@@ -165,13 +165,32 @@ i. Implement a region-based segmentation method (e.g., thresholding, edge detect
 * Finding contours to identify the shape of the image.
 * An empty mask is initialized and the detected contours are overlaid on this by coloring the identified mask with blue colour.
 
+### Growing region
+* Intesity threshold difference is set at 20.
+* We are taking 5 seed points automitically.
+* It will start to add the 4 neighbouring pixels if the intensity differnce is below than threshold.
+* Depth first search is used to keep track to know whether the pixel is already visited or is a part of any segement.
+* since the dataset is large to run fast we used multiprocessing. 
+
+### Results
+* IoU Formula:
+    * Intersection: Common area between predicted and ground truth masks.
+    * Union: Total area covered by both masks.
+* Displaying the best 5 results so check the results
+* Mean iou using edge and threshold:- 0.3226
+* Mean iou using region growing :- 
+
 ## Results
 * IoU Formula:
     * Intersection: Common area between predicted and ground truth masks.
     * Union: Total area covered by both masks.
 * Displaying the best 5 results so check the results
-* Mean iou:- 0.3226
+* Mean iou using edge and Otsu's threshold:- 0.3226
 ![image](https://github.com/user-attachments/assets/db5c15aa-ab3d-478a-82bd-ad1165e798d5)
+* Mean iou using growing region:-
+![image](https://github.com/user-attachments/assets/c526a546-0505-4141-a31c-3f6fba201e18)
+
+
 
 ## Observations and Challenges
 * As the dataset is very large and computing and storing the results occupies large amount of memory so we are using moving average and displaying only top 5 results.
