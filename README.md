@@ -88,6 +88,10 @@ Loaded images from the dataset, converted them to RGB format, resized them to 64
 2.  CNN is better because
 *   It will automatically learns features, while ML classifiers rely on manually extracted features.
 *   ML classifiers rely on preprocessing, while CNN learns from raw pixel data
+## How to run code:
+* Upload the dataset in your google drive.
+* Path to upload dataset: /content/drive/MyDrive/Colab Notebooks
+* Open VR_Task_a_b.ipynb in your colab and run it.
 
 
 
