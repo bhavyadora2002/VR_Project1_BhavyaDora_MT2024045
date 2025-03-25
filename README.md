@@ -184,7 +184,7 @@ i. Implement a region-based segmentation method (e.g., thresholding, edge detect
 * Run the file.
 
 
-**#d.Mask Segmentation Using U-Net (5 Marks)**
+# d. **Mask Segmentation Using U-Net (5 Marks)**
 i. Train a U-Net model for precise segmentation of mask regions in the images.
 ii. Compare the performance of U-Net with the traditional segmentation method
 using metrics like IoU or Dice score
