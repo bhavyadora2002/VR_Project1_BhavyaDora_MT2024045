@@ -16,13 +16,12 @@ My dataset contains 4095 images.Out of which, 2165 images consists of faces with
 * Contours Detection: Used Canny edges to find contours and drew them on a blank image. Flattened the contour image and stored it as features for training.
 * Appended labels for the extracted features of each category. Now my data is ready to perform classification.
   ![image](https://github.com/user-attachments/assets/a56929d6-40ae-4056-a4ba-a4752595911e)
-
 3. **Data Splitting:**
 * As the data is not balanced(2165 images in with_mask and 1930 images in without_mask), We used Stratified Split to maintain class balance.
 4. **Model Training**:
 * Performed classification task on features obtained from Canny,Sobel and Contours using Random Forest and Support Vector Machine Classifiers.
   Calculated Test Accuracy to compare results.
-## *Results:*
+## **Results:**
 * Test Accuracy of RF on Canny: 0.74
 * Test Accuracy of SVC on Canny: 0.76
 * Test Accuracy of RF on Sobel: 0.85
@@ -43,14 +42,6 @@ My dataset contains 4095 images.Out of which, 2165 images consists of faces with
   
 
 
-
-
-
-
-
-
-
-* **Training**
 
 
 
