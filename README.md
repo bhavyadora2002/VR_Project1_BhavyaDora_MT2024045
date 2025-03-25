@@ -94,77 +94,6 @@ Loaded images from the dataset, converted them to RGB format, resized them to 64
 * Open VR_Task_a_b.ipynb in your colab and run it.
 
 
-#d. 
-
-### U-Net Approach
-
-#### Architecture:
-
-- Encoder: 3 blocks with decreasing spatial dimensions and increasing channels (1→16→32→64)
-- Bottleneck: Convolutional block with 128 channels
-- Decoder: 3 blocks with skip connections from encoder
-- Final 1×1 convolution with sigmoid activation
-
-
-#### Training Details:
-
-- Loss Function: Binary Cross Entropy
-- Optimizer: Adam with learning rate 0.001 and weight decay 1e-5
-- Batch size: 2 (optimized for CPU training)
-- Image resolution: Resized to 32×32 for faster training
-- Epochs: 5
-
-
-#### Evaluation Metrics:
-
-- Intersection over Union (IoU)
-- Dice coefficient (F1 score)
-
-
-
-## Hyperparameters and Experiments
-
-### Binary Classification CNN
-The CNN model was evaluated with various hyperparameter combinations. Below are the results categorized by learning rate.
-
-### U-Net Segmentation
-The U-Net model was simplified for CPU training:
-
-- Reduced channel dimensions (original: 64→128→256→512, simplified: 16→32→64→128)
-- Smaller input resolution (32×32 instead of larger resolutions)
-- Batch size of 2 to accommodate memory constraints
-
-## Results
-
-#### U-Net Results:
-
-- Average IoU: 
-- Average Dice Score:
-
-## Observations and Analysis
-
-### Binary Classification Insights:
-
-- MLP performed the best among handcrafted feature approaches
-- CNN significantly outperformed all handcrafted feature methods 
-- Decision Tree had the poorest performance, suggesting the decision boundaries for this problem are not well-represented by axis-aligned splits
-- Adam optimizer generally performed better than SGD and RMSprop for low learning rates
-- Optimal learning rate was 0.001 across most configurations
-- SGD performed better with higher learning rates (0.01) while Adam and RMSprop struggled
-
-
-### Segmentation Insights:
-
-- Simple thresholding performed poorly , indicating that basic intensity-based segmentation is insufficient for mask detection
-- U-Net dramatically improved segmentation quality 
-- Despite being simplified for CPU training, the U-Net architecture still achieved excellent results with just 5 epochs
-- The high Dice score ----- confirms that the U-Net model accurately captures the mask boundaries
-
-
-
-
-  
-
 
 
 
@@ -253,6 +182,77 @@ i. Implement a region-based segmentation method (e.g., thresholding, edge detect
 * Load the dataset.
 * Change the path in the code according to the loaded dataset.
 * Run the file.
+
+
+**#d.Mask Segmentation Using U-Net (5 Marks)**
+i. Train a U-Net model for precise segmentation of mask regions in the images.
+ii. Compare the performance of U-Net with the traditional segmentation method
+using metrics like IoU or Dice score
+
+### U-Net Approach
+
+#### Architecture:
+
+- Encoder: 3 blocks with decreasing spatial dimensions and increasing channels (1→16→32→64)
+- Bottleneck: Convolutional block with 128 channels
+- Decoder: 3 blocks with skip connections from encoder
+- Final 1×1 convolution with sigmoid activation
+
+
+#### Training Details:
+
+- Loss Function: Binary Cross Entropy
+- Optimizer: Adam with learning rate 0.001 and weight decay 1e-5
+- Batch size: 2 (optimized for CPU training)
+- Image resolution: Resized to 32×32 for faster training
+- Epochs: 5
+
+
+#### Evaluation Metrics:
+
+- Intersection over Union (IoU)
+- Dice coefficient (F1 score)
+
+
+
+## Hyperparameters and Experiments
+
+### Binary Classification CNN
+The CNN model was evaluated with various hyperparameter combinations. Below are the results categorized by learning rate.
+
+### U-Net Segmentation
+The U-Net model was simplified for CPU training:
+
+- Reduced channel dimensions (original: 64→128→256→512, simplified: 16→32→64→128)
+- Smaller input resolution (32×32 instead of larger resolutions)
+- Batch size of 2 to accommodate memory constraints
+
+## Results
+
+#### U-Net Results:
+
+- Average IoU: 
+- Average Dice Score:
+
+## Observations and Analysis
+
+### Binary Classification Insights:
+
+- MLP performed the best among handcrafted feature approaches
+- CNN significantly outperformed all handcrafted feature methods 
+- Decision Tree had the poorest performance, suggesting the decision boundaries for this problem are not well-represented by axis-aligned splits
+- Adam optimizer generally performed better than SGD and RMSprop for low learning rates
+- Optimal learning rate was 0.001 across most configurations
+- SGD performed better with higher learning rates (0.01) while Adam and RMSprop struggled
+
+
+### Segmentation Insights:
+
+- Simple thresholding performed poorly , indicating that basic intensity-based segmentation is insufficient for mask detection
+- U-Net dramatically improved segmentation quality 
+- Despite being simplified for CPU training, the U-Net architecture still achieved excellent results with just 5 epochs
+- The high Dice score ----- confirms that the U-Net model accurately captures the mask boundaries
+
 
 
   
