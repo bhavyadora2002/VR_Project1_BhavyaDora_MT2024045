@@ -137,12 +137,12 @@ Loaded images from the dataset, converted them to RGB format, resized them to 64
 
 
 # c. Region Segmentation Using Traditional Techniques (3 Marks)
-## i. Implement a region-based segmentation method (e.g., thresholding, edge detection) to segment the mask regions for faces identified as "with mask."
+i. Implement a region-based segmentation method (e.g., thresholding, edge detection) to segment the mask regions for faces identified as "with mask."
 
-### Introduction
+## Introduction
 * The aim of this task is to identify the mask using region based segmentation
 
-### Dataset
+## Dataset
 * A Masked Face Segmentation Dataset with ground truth face masks can be accessed here: https://github.com/sadjadrz/MFSD
     * This was the folder structure of the dataset.
       ![image](https://github.com/user-attachments/assets/6c7383b8-abbc-451b-a34e-1d5064b9b4ad)
@@ -157,7 +157,7 @@ Loaded images from the dataset, converted them to RGB format, resized them to 64
         * Ground truth:- face_crop_segmentation
             * This folder contains the binary images of the masks which act as a ground truth so that we compare our results with these images using the Intersection over Union(IOU) metrics.
 
-### Steps
+## Steps
 * Converted the images to gray scale as it works best for single channel.
 * Applied the guassian blur with a 5,5 kernel to remove noise and smoothen the image.
 * Identify the images by applying the Canny edge detection with threshold values of 50 to 150.
@@ -170,7 +170,7 @@ Loaded images from the dataset, converted them to RGB format, resized them to 64
 * Finding contours to identify the shape of the image.
 * An empty mask is initialized and the detected contours are overlaid on this by coloring the identified mask with blue colour.
 
-### Results
+## Results
 * IoU Formula:
     * Intersection: Common area between predicted and ground truth masks.
     * Union: Total area covered by both masks.
@@ -178,12 +178,12 @@ Loaded images from the dataset, converted them to RGB format, resized them to 64
 * Mean iou:- 0.3226
 ![image](https://github.com/user-attachments/assets/db5c15aa-ab3d-478a-82bd-ad1165e798d5)
 
-### Observations and Challenges
+## Observations and Challenges
 * As the dataset is very large and computing and storing the results occupies large amount of memory so we are using moving average and displaying only top 5 results.
 * Also when we used fixed threshold we were not able to perform very well because most of the time the mask was regioned as a part of face so to avoid that we used adaptive threshold where based on the surrounding region thresholding was done.
 * Some images had low IoU values, suggesting under-segmentation (missing parts of the object) or over-segmentation (extra regions included).
 
-### How to run
+## How to run
 * Load the dataset.
 * Change the path in the code according to the loaded dataset.
 * Run the file.
